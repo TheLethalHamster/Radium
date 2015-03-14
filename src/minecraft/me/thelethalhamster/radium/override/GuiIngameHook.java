@@ -4,6 +4,7 @@ import me.thelethalhamster.radium.main.Radium;
 import me.thelethalhamster.radium.module.Category;
 import me.thelethalhamster.radium.module.Module;
 import me.thelethalhamster.radium.module.ModuleManager;
+import me.thelethalhamster.radium.ttf.TTFRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
@@ -18,9 +19,10 @@ public class GuiIngameHook extends GuiIngame{
 	FontRenderer fr = Minecraft.getMinecraft().fontRenderer;
 	
 	public void renderGameOverlay(float par1, boolean par2, int par3, int par4){
+		fr = new TTFRenderer("Arial Bold", 17);
 		super.renderGameOverlay(par1, par2, par3, par4);
 		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft().gameSettings, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
-		Minecraft.getMinecraft().fontRenderer.drawString("Radium v1 (rel-1.7.x)", 2, 2, 0xFF8F0000);
+		fr.drawString("Radium v1 (rel-1.7.x)", 2, 2, 0xFF8F0000);
 		int i = 0;
 		for(Module m : ModuleManager.getInstance().getModules()){
 			if(m.getState() && m.getVisible() && !m.isCategory(Category.OTHER)){

@@ -161,7 +161,7 @@ public class Minecraft implements IPlayerUsage
     public static byte[] memoryReserve = new byte[10485760];
     private static final List macDisplayModes = Lists.newArrayList(new DisplayMode[] {new DisplayMode(2560, 1600), new DisplayMode(2880, 1800)});
     private final File fileResourcepacks;
-    private ServerData currentServerData;
+    public ServerData currentServerData;
 
     /** The RenderEngine instance used by Minecraft */
     public TextureManager renderEngine;
@@ -1429,7 +1429,7 @@ public class Minecraft implements IPlayerUsage
         }
     }
 
-    private void func_147116_af()
+    public void func_147116_af()
     {
         if (this.leftClickCounter <= 0)
         {
@@ -1473,7 +1473,7 @@ public class Minecraft implements IPlayerUsage
         }
     }
 
-    private void func_147121_ag()
+    public void func_147121_ag()
     {
         this.rightClickDelayTimer = 4;
         boolean var1 = true;

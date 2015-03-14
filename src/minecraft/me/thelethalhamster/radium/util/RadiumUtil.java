@@ -1,20 +1,29 @@
 package me.thelethalhamster.radium.util;
 
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 import java.util.List;
 
 import me.thelethalhamster.radium.wrapper.RadiumWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.Entity;
 import net.minecraft.network.Packet;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.biome.BiomeCache.Block;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL15;
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Sphere;
 
 public class RadiumUtil {
+	
+	private static ByteBuffer boxSides;
+	private static int cube;
 
 	public FontRenderer getFontRenderer(){
 		return Minecraft.getMinecraft().fontRenderer;
@@ -396,5 +405,91 @@ public class RadiumUtil {
 	    GL11.glEnable(3042);
 	    GL11.glEnable(3553);
 	    GL11.glDisable(2848);
+	  }
+	  
+	  public static void setSneakKeyPressed(boolean pressed)
+	  {
+		  Minecraft.getMinecraft().gameSettings.keyBindSneak.pressed = pressed;
+	  }
+	  
+	  public static void setJumpKeyPressed(boolean pressed)
+	  {
+		  Minecraft.getMinecraft().gameSettings.keyBindJump.pressed = pressed;
+	  }
+	  
+	  public static void setMotionX(double x)
+	  {
+		  Minecraft.getMinecraft().thePlayer.motionX = x;
+	  }
+	  
+	  public static void setMotionY(double y)
+	  {
+		  Minecraft.getMinecraft().thePlayer.motionY = y;
+	  }
+	  
+	  public static void setMotionZ(double z)
+	  {
+	      Minecraft.getMinecraft().thePlayer.motionZ = z;
+	  }
+	  
+	  public static int getForwardCode()
+	  {
+	      return Minecraft.getMinecraft().gameSettings.keyBindForward.getKeyCode();
+	  }
+	  
+	  public static double getMotionX()
+	  {
+		  return Minecraft.getMinecraft().thePlayer.motionX;
+	  }
+	  
+	  public static double getMotionY()
+	  {
+		  return Minecraft.getMinecraft().thePlayer.motionY;
+	  }
+	  
+	  public static double getMotionZ()
+	  {
+	      return Minecraft.getMinecraft().thePlayer.motionZ;
+	  }
+	  
+	  public static void setOnGround(boolean b)
+	  {
+	      Minecraft.getMinecraft().thePlayer.onGround = b;
+	  }
+	  
+	  public static AxisAlignedBB getAABB(int x, int y, int z)
+	  {
+	    Entity p = Minecraft.getMinecraft().thePlayer;
+	    double var8 = p.lastTickPosX + (p.posX - p.lastTickPosX);
+	    double var10 = p.lastTickPosY + (p.posY - p.lastTickPosY);
+	    double var12 = p.lastTickPosZ + (p.posZ - p.lastTickPosZ);
+	    float var6 = 0.002F;
+	    net.minecraft.block.Block block = Minecraft.getMinecraft().theWorld.getBlock(x, y, z);
+	    return block.getSelectedBoundingBoxFromPool(Minecraft.getMinecraft().theWorld, x, y, z).expand(0.002000000094994903D, 0.002000000094994903D, 0.002000000094994903D).getOffsetBoundingBox(-var8, -var10, -var12);
+	  }
+	  
+	  public static FloatBuffer getBox(AxisAlignedBB bound)
+	  {
+	    return getBox((float)bound.minX, (float)bound.minY, (float)bound.minZ, (float)bound.maxX, (float)bound.maxY, (float)bound.maxZ);
+	  }
+	  
+	  public static FloatBuffer getBox(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+	  {
+	    FloatBuffer vertices = BufferUtils.createFloatBuffer(24);
+	    vertices.put(new float[] { minX, minY, minZ, maxX, minY, minZ, maxX, maxY, minZ, minX, maxY, minZ, minX, maxY, maxZ, maxX, maxY, maxZ, maxX, minY, maxZ, minX, minY, maxZ });
+	    vertices.flip();
+	    return vertices;
+	  }
+	  
+	  public static ByteBuffer getSides()
+	  {
+	    boxSides = BufferUtils.createByteBuffer(24);
+	    boxSides.put(new byte[] { 0, 3, 2, 1, 2, 5, 6, 1, 6, 7, 0, 1, 0, 7, 4, 3, 4, 7, 6, 5, 2, 3, 4, 5 });
+	    boxSides.flip();
+	    cube = GL15.glGenBuffers();
+	    GL15.glBindBuffer(34962, cube);
+	    GL15.glBufferData(34962, getBox(-0.5F, -0.5F, -0.5F, 0.5F, 0.5F, 0.5F), 35044);
+	    GL15.glBindBuffer(34962, 0);
+	    return boxSides;
 	  }
 }

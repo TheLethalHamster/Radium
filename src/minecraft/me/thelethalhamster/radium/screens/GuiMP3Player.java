@@ -24,7 +24,7 @@ public class GuiMP3Player extends GuiScreen{
 	public boolean isPinned = false;
 	
 	 public void drawScreen(int par1, int par2, float par3){
-		 RenderUtil.drawRect(0.0F, 0.0F, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight, -11184811);
+		 this.drawDefaultBackground();
 		 if(dragging)
 			{
 				windowDragged(par1, par2);

@@ -19,16 +19,16 @@ public class GuiRadium extends GuiScreen{
 	public void initGui() {
 		int var3 = this.height / 4 + 48;
 		this.buttonList.add(new GuiRadiumButton(0, this.width / 2 - 100, var3 + 24 * 3, "Back"));
-		this.buttonList.add(protocol = new GuiRadiumButton(1, this.width / 2 - 100, var3 + 24 * -1, "Protocol 1.7.2"));
+		this.buttonList.add(protocol = new GuiRadiumButton(1, this.width / 2 - 100, var3 + 24 * -1, "Change Version (On 1.7.2)"));
 		this.buttonList.add(new GuiRadiumButton(100, this.width / 2 - 100, var3 + 24 + 24 * -1, "MP3 Player"));
 		protocol.enabled = true;
 	}
 	
 	public void updateScreen() {
 		if(Radium.getInstance().theProtocol == 4){
-			protocol.displayString = "Protocol 1.7.2";
+			protocol.displayString = "Change Version (On 1.7.2)";
 		}else{
-			protocol.displayString = "Protocol 1.7.9";
+			protocol.displayString = "Change Version (On 1.7.9)";
 		}
 	}
 	

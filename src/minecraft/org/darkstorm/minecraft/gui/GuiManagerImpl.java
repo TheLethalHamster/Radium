@@ -51,6 +51,7 @@ import org.darkstorm.minecraft.gui.listener.ButtonListener;
 import org.darkstorm.minecraft.gui.listener.ComboBoxListener;
 import org.darkstorm.minecraft.gui.listener.SliderListener;
 import org.darkstorm.minecraft.gui.theme.Theme;
+import org.darkstorm.minecraft.gui.theme.green.GreenTheme;
 import org.darkstorm.minecraft.gui.theme.radium.RadiumTheme;
 import org.darkstorm.minecraft.gui.theme.simple.SimpleTheme;
 
@@ -151,7 +152,7 @@ public final class GuiManagerImpl extends AbstractGuiManager {
 		Theme theme = getTheme();
 		Frame testFrame = new BasicFrame("Theme Manager");
 		testFrame.setTheme(theme);
-		ComboBox comboBox = new BasicComboBox("Radium Theme", "Simple Theme");
+		ComboBox comboBox = new BasicComboBox("Radium Theme", "Green Theme", "Simple Theme");
 		comboBox.addComboBoxListener(new ComboBoxListener() {
 
 			@Override
@@ -162,10 +163,11 @@ public final class GuiManagerImpl extends AbstractGuiManager {
 					theme = new RadiumTheme();
 					break;
 				case 1: 
-					theme = new SimpleTheme();
+					theme = new GreenTheme();
 					break;
 				case 2:
-
+					theme = new SimpleTheme();
+					break;
 				default:
 					return;
 				}

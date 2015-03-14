@@ -32,6 +32,7 @@ public class ModuleManager {
 		getModules().add(new AutoArmor());
 		getModules().add(new AutoBlock());
 		getModules().add(new AutoEat());
+		getModules().add(new AutoJump());
 		getModules().add(new AutoMine());
 		getModules().add(new AutoRespawn());
 		getModules().add(new AutoSoup());
@@ -45,9 +46,11 @@ public class ModuleManager {
 		getModules().add(new Criticals());
 		getModules().add(new Derp());
 		getModules().add(new Dolphin());
+		getModules().add(new FastLadder());
 		getModules().add(new FastPlace());
 		getModules().add(new Flight());
 		getModules().add(new FullBright());
+		getModules().add(new Glide());
 		getModules().add(new GodMode());
 		getModules().add(new HighJump());
 		getModules().add(new JetPackFly());
@@ -61,6 +64,7 @@ public class ModuleManager {
 		getModules().add(new Phase());
 		getModules().add(new PlayerESP());
 		getModules().add(new ProphuntESP());
+		getModules().add(new Regen());
 		getModules().add(new Sneak());
 		getModules().add(new SpaceLadder());
 		getModules().add(new SpeedMine());
@@ -70,6 +74,7 @@ public class ModuleManager {
 		getModules().add(new SuperRegen());
 		getModules().add(new Timer());
 		getModules().add(new Tracers());
+		getModules().add(new Twerk());
 	}
 	
 	private void Gui(){

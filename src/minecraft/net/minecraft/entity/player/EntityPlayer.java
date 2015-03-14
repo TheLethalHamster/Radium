@@ -159,7 +159,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
     protected float speedOnGround = 0.1F;
     protected float speedInAir = 0.02F;
     private int field_82249_h;
-    private final GameProfile field_146106_i;
+    public GameProfile field_146106_i;
 
     /**
      * An instance of a fishing rod's hook. If this isn't null, the icon image of the fishing rod is slightly different

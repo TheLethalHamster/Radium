@@ -8,7 +8,7 @@ public class RadiumTheme extends AbstractTheme {
 	private final FontRenderer fontRenderer;
 
 	public RadiumTheme() {
-		fontRenderer = new TTFRenderer("Segoe UI Bold", 15);
+		fontRenderer = new TTFRenderer("Arial Bold", 15);
 
 		installUI(new RadiumFrameUI(this));
 		installUI(new RadiumPanelUI(this));
